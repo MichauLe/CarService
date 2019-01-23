@@ -32,8 +32,8 @@
 
 <hr>
 <table>
-    <tr th:each="checklist,i :${wpisyList}">
-        <td th:text="${i.index}"></td>
+    <tr th:each="checklist :${wpisyList}">
+        <td th:text="${checklist.getWpis()}"></td>
         <td th:text="${checklist.getDataWpisu()}"></td>
     </tr>
 
@@ -43,8 +43,12 @@
     <table>
         <input type="hidden" name="wpisId" th:value="${tweetToEdit.wpisId}">
         <tr>
-            <td>Item:</td>
+            <td>Discription:</td>
             <td><input type="text" name="tagName"></td>
+            <td>Milage:</td>
+            <td><input type="number" name="tagMilage"></td>
+            <td>Make year:</td>
+            <td><input type="number" name="tagMakeyear"></td>
         </tr>
         <tr>
             <td></td>
@@ -53,9 +57,13 @@
     </table>
 </form>
 <table>
-    <tr th:each="tag,i : ${tweetToEdit.getTagSet()}">
-        <td th:text="${i.index}"></td>
+    <tr th:each="tag : ${tweetToEdit.getTagSet()}">
+        <td>Discription:</td>
         <td th:text="${tag.getName()}"></td>
+        <td>Milage:</td>
+        <td th:text="${tag.getMilage()}"></td>
+        <td>Make year:</td>
+        <td th:text="${tag.getMakeyear()}"></td>
     </tr>
 </table>
 <th:block th:include="template :: scripts_footer"/>

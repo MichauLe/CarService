@@ -60,7 +60,7 @@ public class ChecklistService {
         Optional<Checklist> optionalTweet = checklistRepository.findById(dto.getWpisId());
         if (optionalTweet.isPresent()) {
             Checklist checklist = optionalTweet.get();
-            Item tag = getTag(dto.getTagName());
+            Item tag = getTag(dto.getTagName(),dto.getTagMilage(),dto.getTagMakeyear());
 
             checklist.getTagSet().add(tag);
             checklistRepository.save(checklist);
@@ -70,21 +70,23 @@ public class ChecklistService {
         }
     }
 
-    public Item getTag(String name) {
+    public Item getTag(String name,Long milage,Long makeyear) {
         Optional<Item> tagOptional = itemRepository.findByName(name);
         if (tagOptional.isPresent()) {
             return tagOptional.get();
         }
         Item tag = new Item();
         tag.setName(name);
+        tag.setMilage(milage);
+        tag.setMakeyear(makeyear);
 
         tag = itemRepository.save(tag);
         tag = itemRepository.findById(tag.getId()).get();
         return tag;
     }
 
-    public List<ChecklistDto> findTweetsWithTag(String tagName) {
-        Item tag = getTag(tagName);
+    public List<ChecklistDto> findTweetsWithTag(String tagName,Long tagMilage,Long tagMakeyear) {
+        Item tag = getTag(tagName,tagMilage,tagMakeyear);
         return tag.getTweetSet()
                 .stream()
                 .map(checklist -> checklistMapper.wallToWallDto(checklist))

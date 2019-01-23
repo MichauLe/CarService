@@ -28,7 +28,7 @@ public class ChecklistController {
         return "redirect:/checklist";
     }
     @GetMapping("/removeWpis")
-    public String removeWpis(@RequestParam(name = "wpistId") Long wpisId) {
+    public String removeWpis(@RequestParam(name = "wpisId") Long wpisId) {
         checklistService.remove(wpisId);
 
         return "redirect:/checklist";
@@ -60,8 +60,11 @@ public class ChecklistController {
         return "redirect:/edit/" + dto.getWpisId();
     }
     @RequestMapping(value = "/listTweets/{tagName}")
-    public String getTweetsWithTag(Model model, @PathVariable(name = "tagName") String tagName){
-        model.addAttribute("tweetList", checklistService.findTweetsWithTag(tagName));
+    public String getTweetsWithTag(Model model,
+                                   @PathVariable(name = "tagName") String tagName,
+                                   @PathVariable(name = "tagMilage")Long tagMilage,
+                                   @PathVariable(name = "tagMakeyear")Long tagMakeyear){
+        model.addAttribute("tweetList", checklistService.findTweetsWithTag(tagName,tagMilage,tagMakeyear));
 
         return "list";
     }

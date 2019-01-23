@@ -20,6 +20,8 @@ public class Item {
     private Long id;
     @Column(unique = true)
     private String name;
+    private Long milage;
+    private Long makeyear;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Checklist> tweetSet = new HashSet<>();
 }

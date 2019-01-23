@@ -10,4 +10,6 @@ import lombok.NoArgsConstructor;
 public class ItemDto {
     private Long wpisId;
     private String tagName;
+    private Long tagMilage;
+    private Long tagMakeyear;
 }
