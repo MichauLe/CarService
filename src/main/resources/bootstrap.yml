@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: javagda17-car-service
+  cloud:
+   enabled: true
+eureka:
+  client:
+    server-url:
+      defaultZone: http://localhost:8010/eureka
+

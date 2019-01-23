@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="template :: scripts_header"/>
+    <meta charset="UTF-8">
+    <title>Checklist</title>
+</head>
+<body>
+<th:block th:include="template :: navigator"/>
+<hr>
+<form th:action="@{/checklist}" method="post">
+    <label for="wpisWpis">Nazwa:</label>
+    <input type="text" id="wpisWpis" name="wpisWpis">
+
+    <input type="submit" value="Submit">
+</form>
+<hr>
+<table>
+
+    <tr th:each="checklist:${wpisyList}">
+        <td th:text="${checklist.getWpis()}"></td>
+        <td th:text="${checklist.getDataWpisu()}"></td>
+
+
+        <td>
+            <a th:href="@{'/removeWpis?wpisId=' + ${checklist.getId()}}">Remove</a>
+        </td>
+        <td>
+            <a th:href="@{'/edit/' + ${checklist.getId()}}">Edytuj</a>
+        </td>
+    </tr>
+</table>
+<th:block th:include="template :: scripts_footer"/>
+</body>
+</html>

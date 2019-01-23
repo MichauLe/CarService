@@ -1,0 +1,63 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="template :: scripts_header"/>
+    <meta charset="UTF-8">
+    <title>Edit Form</title>
+</head>
+<body>
+<th:block th:include="template :: navigator"/>
+
+<form th:action="@{'/edit/' + ${tweetToEdit.getWpisId()}}" method="post" th:object="${tweetToEdit}">
+    <input type="hidden" th:field="*{wpisDataWpisu}" th:value="*{wpisDataWpisu}">
+    <input type="hidden" th:field="*{wpisId}" th:value="*{wpisId}">
+    <table>
+        <tr>
+            <td>List: </td>
+            <td>
+                <input type="text" name="wpisWpis" th:field="*{wpisWpis}">
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" th:value="submit">
+            </td>
+        </tr>
+    </table>
+</form>
+
+<hr>
+<table>
+    <tr th:each="checklist,i :${wpisyList}">
+        <td th:text="${i.index}"></td>
+        <td th:text="${checklist.getDataWpisu()}"></td>
+    </tr>
+
+</table>
+<hr>
+<form th:action="@{'/tweetTag/'}" method="post">
+    <table>
+        <input type="hidden" name="wpisId" th:value="${tweetToEdit.wpisId}">
+        <tr>
+            <td>Item:</td>
+            <td><input type="text" name="tagName"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" th:value="Submit"></td>
+        </tr>
+    </table>
+</form>
+<table>
+    <tr th:each="tag,i : ${tweetToEdit.getTagSet()}">
+        <td th:text="${i.index}"></td>
+        <td th:text="${tag.getName()}"></td>
+    </tr>
+</table>
+<th:block th:include="template :: scripts_footer"/>
+</body>
+</html>

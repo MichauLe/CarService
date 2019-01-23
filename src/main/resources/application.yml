@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    username: root
+    password: urszulka
+    url: jdbc:mysql://localhost:3306/cars?serverTimezone=UTC
+  jpa:
+    hibernate:
+      ddl-auto: update
