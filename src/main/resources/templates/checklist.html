@@ -10,8 +10,10 @@
 <body>
 <th:block th:include="template :: navigator"/>
 <hr>
+<main role="main" class="container">
+
 <form th:action="@{/checklist}" method="post">
-    <label for="wpisWpis">Nazwa:</label>
+    <label for="wpisWpis">Name:</label>
     <input type="text" id="wpisWpis" name="wpisWpis">
 
     <input type="submit" value="Submit">
@@ -21,17 +23,18 @@
 
     <tr th:each="checklist:${wpisyList}">
         <td th:text="${checklist.getWpis()}"></td>
-        <td th:text="${checklist.getDataWpisu()}"></td>
 
 
         <td>
             <a th:href="@{'/removeWpis?wpisId=' + ${checklist.getId()}}">Remove</a>
         </td>
         <td>
-            <a th:href="@{'/edit/' + ${checklist.getId()}}">Edytuj</a>
+            <a th:href="@{'/edit/' + ${checklist.getId()}}">Edit</a>
         </td>
     </tr>
 </table>
+</main>
+
 <th:block th:include="template :: scripts_footer"/>
 </body>
 </html>

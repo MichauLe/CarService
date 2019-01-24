@@ -9,6 +9,7 @@
 </head>
 <body>
 <th:block th:include="template :: navigator"/>
+<main role="main" class="container">
 
 <form th:action="@{'/edit/' + ${tweetToEdit.getWpisId()}}" method="post" th:object="${tweetToEdit}">
     <input type="hidden" th:field="*{wpisDataWpisu}" th:value="*{wpisDataWpisu}">
@@ -24,7 +25,7 @@
         <tr>
             <td></td>
             <td>
-                <input type="submit" th:value="submit">
+                <input type="submit" th:value="Change">
             </td>
         </tr>
     </table>
@@ -47,7 +48,7 @@
             <td><input type="text" name="tagName"></td>
             <td>Milage:</td>
             <td><input type="number" name="tagMilage"></td>
-            <td>Make year:</td>
+            <td>Year:</td>
             <td><input type="number" name="tagMakeyear"></td>
         </tr>
         <tr>
@@ -56,16 +57,26 @@
         </tr>
     </table>
 </form>
-<table>
-    <tr th:each="tag : ${tweetToEdit.getTagSet()}">
-        <td>Discription:</td>
-        <td th:text="${tag.getName()}"></td>
-        <td>Milage:</td>
-        <td th:text="${tag.getMilage()}"></td>
-        <td>Make year:</td>
-        <td th:text="${tag.getMakeyear()}"></td>
+<table class="table">
+
+    <thead>
+    <tr>
+        <th scope="col">Discription:</th>
+        <th scope="col">Milage:</th>
+        <th scope="col">After years:</th>
     </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tag : ${tweetToEdit.getTagSet()}">
+        <td scope="row" th:text="${tag.getName()}"></td>
+        <td scope="row" th:text="${tag.getMilage()}"></td>
+        <td scope="row" th:text="${tag.getMakeyear()}"></td>
+    </tr>
+    </tbody>
+
 </table>
+</main>
+
 <th:block th:include="template :: scripts_footer"/>
 </body>
 </html>
