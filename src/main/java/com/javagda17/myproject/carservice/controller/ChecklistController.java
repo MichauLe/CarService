@@ -68,4 +68,10 @@ public class ChecklistController {
 
         return "list";
     }
+//   @GetMapping("/checklist")
+//    public  String getListyears(Model model){
+//       model.addAttribute("wpisyList",checklistService.getLista());
+//        return "checklist";
+//    }
+
 }

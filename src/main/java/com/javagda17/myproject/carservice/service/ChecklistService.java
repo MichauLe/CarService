@@ -92,4 +92,28 @@ public class ChecklistService {
                 .map(checklist -> checklistMapper.wallToWallDto(checklist))
                 .collect(Collectors.toList());
     }
+
+//    public List<UserInput> listyears(Long useryearDto){
+//
+//        UserInput userInput=new UserInput();
+//        userInput.setUseryear(useryearDto);
+//
+//        for (int i = useryearDto.intValue();i< useryearDto +25; i++ ){
+//        }
+//        return listyears(useryearDto);
+//    }
+
+
+//
+//    public List<Checklist> getLista(){
+//
+//        List<Checklist> zblizajaceSie = new ArrayList<>();
+//        for (int i = a.intValue();i< useryearDto +25; i++ ){
+//
+//        }
+//
+//        List<Checklist> wynikowa = checklistRepository.findAll();
+//        wynikowa.addAll(zblizajaceSie);
+//        return wynikowa;
+//    }
 }

@@ -26,6 +26,9 @@ public class AppUser {
     @Size(min = 4)
     private String password;
 
+    private Long useryear;
+    private Long usermilage;
+
     private String name;
 
     private String surname;
